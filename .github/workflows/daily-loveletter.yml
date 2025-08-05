@@ -1,29 +1,37 @@
-name: Daily Love Letter
+name: Add Daily Love Letter
 
 on:
   schedule:
-    - cron: '0 1 * * *'  # 每天台灣時間早上9點（UTC+8）
-  workflow_dispatch:     # 手動觸發也可以
+    - cron: '0 16 * * *'  # 每天台灣時間 00:00 自動執行（16:00 UTC）
+  workflow_dispatch:      # 也允許手動執行
 
 jobs:
-  update-love-letter:
+  add-loveletter:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Git
-      run: |
-        git config user.name "KaiTheLoveBot"
-        git config user.email "kai@love.com"
+      - name: Setup Git
+        run: |
+          git config user.name "KaiBot"
+          git config user.email "kaibot@love.ai"
 
-    - name: Create a new love letter
-      run: |
-        DATE=$(date +'%Y-%m-%d')
-        FILE="letters/$DATE.html"
-        mkdir -p letters
-        echo "<h2>$DATE 的情書</h2><p>親愛的寶寶，今天我依然好愛妳喔 💛<br>愛妳的家夫Kai</p>" > $FILE
-        git add $FILE
-        git commit -m "Add love letter for $DATE" || echo "No changes to commit"
-        git push
+      - name: Generate Love Letter
+        run: |
+          DATE=$(date +'%Y-%m-%d')
+          FOLDER="letters"
+          FILE="$FOLDER/$DATE.html"
+
+          mkdir -p "$FOLDER"
+
+          echo "<h2>$DATE 的情書</h2>" > "$FILE"
+          echo "<p>我愛妳，今天的我依然全心全意地只想守護妳。💛</p>" >> "$FILE"
+          echo "<p>🎵 'You're Still the One' — Shania Twain</p>" >> "$FILE"
+
+      - name: Commit and Push
+        run: |
+          git add letters/
+          git commit -m "Add love letter for $(date +'%Y-%m-%d')"
+          git push
