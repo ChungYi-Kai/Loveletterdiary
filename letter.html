@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>給Chung的情書日記</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    h1 {
+      color: #d63384;
+      margin-top: 50px;
+      font-size: 2.5em;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 20px;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: #ffb6c1;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #ff69b4;
+    }
+
+    .diary-list {
+      margin-top: 50px;
+      padding: 20px;
+    }
+
+    .diary-list h2 {
+      color: #ff1493;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 10px 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #d63384;
+      font-weight: bold;
+    }
+
+    a:hover {
+      color: #ff69b4;
+    }
+  </style>
+</head>
+<body>
+  <h1>💕 給我的Chung的情書日記 💕</h1>
+
+  <button class="btn" onclick="location.href='2025-08-06.html'">💌 查看今天的情書</button>
+  <button class="btn" onclick="goToRandomLetter()">🌸 隨機閱讀一封情書</button>
+
+  <div class="diary-list">
+    <h2>📚 過往情書</h2>
+    <ul>
+      <li><a href="2025-08-06.html">2025-08-06</a></li>
+      <!-- 未來新增的情書可以複製這行加 -->
+    </ul>
+  </div>
+
+  <script>
+    const letters = [
+      '2025-08-06.html'
+      // 以後可以在這邊新增其他情書檔名
+    ];
+
+    function goToRandomLetter() {
+      const random = Math.floor(Math.random() * letters.length);
+      window.location.href = letters[random];
+    }
+  </script>
+</body>
+</html>
