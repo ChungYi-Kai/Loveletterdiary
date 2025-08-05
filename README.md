@@ -1,2 +1,2 @@
-# New-respository-
+# ChungYi&Kai
 Love-letter-diary
